@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        body{
+            background:rgb(254,106,94);
+        }
+        .color{
+            color:rgb(254,106,94);
+        }
+        .s{
+            color:rgb(148,148,148);
+        }
+        #counter{
+            background:#fff;
+            width:260px;
+            height:450px;
+            /*border:1px solid #808080;*/
+            margin:0 auto;
+            margin-top:100px;
+            border-radius:10px;
+            box-shadow:0px 0px 30px 0px rgb(192,55,57) ;
+        }
+        #name{
+            height:30px;
+        }
+        #name .point{
+            margin:5px;
+            cursor:pointer;
+            display:inline-block;
+            float:left;
+            width:15px;
+            height:15px;
+            border:1px inset rgb(254,106,94);
+            border-radius:50%;
+        }
+        #content{
+            margin-left:10px;
+            width:240px;
+            height:140px;
+            color:#fff;
+            border-bottom:1px inset rgb(254,106,94);
+            font-size:16px;
+            text-align:right;
+            outline:none;
+            /*background:rgb(248,250,254);*/
+            font-size:18px;
+            /*vertical-align:middle;*/
+            
+        }
+        .number{
+            margin-left:10px;
+            width:240px;
+            height:260px;
+        }
+        .key{
+            cursor:pointer;
+            float:left;
+            width:54px;
+            height:44px;
+            border:0px solid #808080;
+            font-size:18px;
+            text-align:center;
+            line-height:44px;
+            user-select:none;
+            margin:3px;
+            border-radius:4px;
+            outline:none;
+           background:rgba(0, 0, 0, 0.00);
+        }
+        .key:hover{
+            background:rgba(255,232,207,0.2);
+        }
+    </style>
+    <script type="text/javascript">
+   
+   window.onload = function () {
+       counter();
+   }
+   function p(bg) {   //将颜色作为参数传递过来
+       
+       var name = document.getElementById("name");
+       var backColor = document.getElementById("counter");
+       var point = name.children;
+       var num = document.getElementsByClassName("key");
+       var cont = document.getElementById("content");
+       if (bg == "#000") {
+           backColor.style.backgroundColor = "#000";
+           num[4].style.color = "#fff";
+           num[5].style.color = "#fff";
+           num[6].style.color = "#fff";
+           num[8].style.color = "#fff";
+           num[9].style.color = "#fff";
+           num[10].style.color = "#fff";
+           num[12].style.color = "#fff";
+           num[13].style.color = "#fff";
+           num[14].style.color = "#fff";
+           num[16].style.color = "#fff";
+           num[17].style.color = "#fff";
+           num[18].style.color = "#fff";
+           cont.style.color = "#fff";
+               //=
+       }
+       if (bg == "#fff") {
+           backColor.style.backgroundColor = "#000";
+           num[4].style.color = "#000";
+           num[5].style.color = "#000";
+           num[6].style.color = "#000";
+           num[8].style.color = "#000";
+           num[9].style.color = "#000";
+           num[10].style.color = "#000";
+           num[12].style.color = "#000";
+           num[13].style.color = "#000";
+           num[14].style.color = "#000";
+           num[16].style.color = "#000";
+           num[17].style.color = "#000";
+           num[18].style.color = "#000";
+           cont.style.color = "#000";
+           //=
+       }
+       if (bg == "rgb(148,148,148)") {
+           num[0].style.color = "#fff";
+           num[1].style.color = "#fff";
+           num[2].style.color = "#fff";
+           
+       }
+       backColor.style.backgroundColor = bg;
+       //for (var i = 0; i < point.length; i++) {
+       //    alert(i);
+           //switch (i) {
+           //    case '0':
+           //        backColor.style.backgroundColor = "#000";
+           //        break;
+           //    case '1':
+           //        backColor.style.backgroundColor = "rgb(254,106,94)";
+           //        break;
+           //    case '2':
+           //        backColor.style.backgroundColor = "rgb(148,148,148)";
+           //        break;
+
+           //}
+           
+
+           //var a = point[i].style.backgroundColor;
+           //backColor.style.backgroundColor = a;
+           
+       //}
+   }
+   function counter() {
+       var num = document.getElementsByClassName("key");
+       
+       for (var i = 0; i < num.length; i++) {
+           num[i].onclick = function () {
+               var n = this.value;
+               if (n == "C" || n == "CE") {
+                   document.getElementById("content").innerHTML = "";
+               }
+               else if (n == "←") {
+
+                   var basic = document.getElementById("content").innerHTML;
+                   
+                   document.getElementById("content").innerHTML = basic.substr(0, basic.length - 1);
+                   
+                   
+               }
+               else if (n == "=") {
+                   var basic = document.getElementById("content").innerHTML;
+                   
+                   document.getElementById("content").innerHTML = document.getElementById("content").innerHTML+"<P>"+eval(basic);
+                   
+               }
+               else {
+                   document.getElementById("content").innerHTML += this.value;
+               }
+           }
+           
+       }
+      
+   }
+    </script>
+</head>
+<body>
+    
+    <div id="counter">
+        <div id="name">
+            <div class="point" style="background:#000;" onclick="p('#000')"></div>
+            <div class="point" style="background:#fff;" onclick="p('#fff')"></div>
+            <div class="point" style="background:rgb(148,148,148);" onclick="p('rgb(148,148,148)')"></div>
+        </div>
+        <!--<input type="text" value="123" id="content"/>-->
+        <div id="content"></div>
+        <div class="number">
+            <input type="button" value="C" class="key s"/>
+            <input type="button" value="CE" class="key s" />
+            <input type="button" value="←" class="key s" />
+            <input type="button" value="/" class="key color" />
+            <input type="button" value="7" class="key" />
+            <input type="button" value="8" class="key" />
+            <input type="button" value="9" class="key" />
+            <input type="button" value="*" class="key color" />
+            <input type="button" value="4" class="key" />
+            <input type="button" value="5" class="key" />
+            <input type="button" value="6" class="key" />
+            <input type="button" value="+" class="key color" />
+            <input type="button" value="1" class="key" />
+            <input type="button" value="2" class="key" />
+            <input type="button" value="3" class="key" />
+            <input type="button" value="-" class="key color" />
+            <input type="button" value="00" class="key" />
+            <input type="button" value="0" class="key" />
+            <input type="button" value="." class="key" />
+            <input type="button" value="=" class="key color" />
+            
+        </div>
+    </div>
+</body>
+</html>
