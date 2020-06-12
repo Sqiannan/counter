@@ -93,35 +93,25 @@
        var cont = document.getElementById("content");
        if (bg == "#000") {
            backColor.style.backgroundColor = "#000";
-           num[4].style.color = "#fff";
-           num[5].style.color = "#fff";
-           num[6].style.color = "#fff";
-           num[8].style.color = "#fff";
-           num[9].style.color = "#fff";
-           num[10].style.color = "#fff";
-           num[12].style.color = "#fff";
-           num[13].style.color = "#fff";
-           num[14].style.color = "#fff";
-           num[16].style.color = "#fff";
-           num[17].style.color = "#fff";
-           num[18].style.color = "#fff";
+           
+           rgb(148,148,148)
+           for(var i=4;i<19;i++){
+               num[i].style.color="#fff";
+           }
+           
            cont.style.color = "#fff";
-               //=
+              
        }
        if (bg == "#fff") {
            backColor.style.backgroundColor = "#000";
-           num[4].style.color = "#000";
-           num[5].style.color = "#000";
-           num[6].style.color = "#000";
-           num[8].style.color = "#000";
-           num[9].style.color = "#000";
-           num[10].style.color = "#000";
-           num[12].style.color = "#000";
-           num[13].style.color = "#000";
-           num[14].style.color = "#000";
-           num[16].style.color = "#000";
-           num[17].style.color = "#000";
-           num[18].style.color = "#000";
+           for(var j=0;j<3;j++){
+               num[i].style.color="rgb(148,148,148)";
+           }
+           rgb(148,148,148)
+           for(var i=3;i<19;i++){
+               num[i].style.color="#000";
+           }
+           
            cont.style.color = "#000";
            //=
        }
