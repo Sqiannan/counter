@@ -48,9 +48,10 @@
             color:#000;
             border-bottom:1px inset rgb(254,106,94);
             font-size:20px;
+            line-height:140px;
             text-align:right;
             outline:none;
-             
+            /*overflow:hidden;*/ 
         }
         .number{
             margin-left:10px;
@@ -97,18 +98,6 @@
                }
                num[i].style.color = "#fff";
            }
-           //num[4].style.color = "#fff";
-           //num[5].style.color = "#fff";
-           //num[6].style.color = "#fff";
-           //num[8].style.color = "#fff";
-           //num[9].style.color = "#fff";
-           //num[10].style.color = "#fff";
-           //num[12].style.color = "#fff";
-           //num[13].style.color = "#fff";
-           //num[14].style.color = "#fff";
-           //num[16].style.color = "#fff";
-           //num[17].style.color = "#fff";
-           //num[18].style.color = "#fff";
            cont.style.color = "#fff";
        }
        if (bg == "#fff") {
@@ -122,21 +111,6 @@
                }
                num[i].style.color = "#000";
            }
-           //num[0].style.color = "rgb(148, 148, 148)";
-           //num[1].style.color = "rgb(148, 148, 148)";
-           //num[2].style.color = "rgb(148, 148, 148)";
-           //num[4].style.color = "#000";
-           //num[5].style.color = "#000";
-           //num[6].style.color = "#000";
-           //num[8].style.color = "#000";
-           //num[9].style.color = "#000";
-           //num[10].style.color = "#000";
-           //num[12].style.color = "#000";
-           //num[13].style.color = "#000";
-           //num[14].style.color = "#000";
-           //num[16].style.color = "#000";
-           //num[17].style.color = "#000";
-           //num[18].style.color = "#000";
            cont.style.color = "#000";
        }
        if (bg == "rgb(148,148,148)") {
@@ -152,66 +126,64 @@
        var basic = content.innerHTML;
        var firstChar = basic.charAt(0);//获取字符串第一个元素
        
-
+       
        for (var i = 0; i < num.length; i++) {
            
            num[i].onclick = function () {
                var n = this.value;
-               if (n == "C" || n == "CE") {
-                   content.innerHTML = "";
-               }
-               else if (n == "+" ||  n == "/" || n == "*") { //如果最后一个元素为符号，需要先删除才能再输入符号
-                   var basic = content.innerHTML;
-                   var lastChar = basic.charAt(basic.length - 1);//获取字符串最后一个元素
-                   if (lastChar == "+" || lastChar == "-" || lastChar == "/" || lastChar == "*") {
-                       content.innerHTML = basic.substr(0, basic.length - 1);
-                       content.innerHTML += this.value;
-                   }
-                   else {
-                       content.innerHTML += this.value;
-                   }
-               }
-               else if (n == "-") {          //如果还没有输入任何字符，或者最后一个字符是“*”“/”，可以输入“-”作为负值
-                   var basic = content.innerHTML;
-                   var lastChar = basic.charAt(basic.length - 1);//获取字符串最后一个元素
-                   if (lastChar == "+" || lastChar == "-") {
-                       content.innerHTML = basic.substr(0, basic.length - 1);
-                       content.innerHTML += this.value;
-                   }
-                   else {
-                       content.innerHTML += this.value;
-                       }
-               }
-               //else if (n == "+" || n == "/" || n == "*") {
-               //    var firstChar = basic.charAt(0);//获取字符串第一个元素
-               //    var lastChar = basic.charAt(basic.length - 1);//获取字符串最后一个元素
-
-               //    if (lastChar == "+"|| lastChar == "/" || lastChar == "*") {//判断最后一个元素是不是+ - *
-               //        content.innerHTML = basic.substr(0, basic.length - 1);
-               //        content.innerHTML += n;
-               //    }
-               //    else if (basic.length == 0) {
-               //        //content.innerHTML = basic.substr(0, basic.length - 1);
-               //    }
-               //    else {
-               //        content.innerHTML += n;
-               //    }
-               //}
-               else if (n == "←") {
-                   var basic = content.innerHTML;
-                   content.innerHTML = basic.substr(0, basic.length - 1);
-               }
-               else if (n == "=") {
-                   var basic = content.innerHTML;
-                   content.innerHTML = eval(basic);
+               if (content.innerHTML.length < 20) {
                    
+                   if (n == "C" || n == "CE") {
+                       content.innerHTML = "";
+                   }
+                   else if (n == "+" || n == "/" || n == "*") { //如果最后一个元素为符号，需要先删除才能再输入符号
+                       var basic = content.innerHTML;
+                       var lastChar = basic.charAt(basic.length - 1);//获取字符串最后一个元素
+                       if (lastChar == "+" || lastChar == "-" || lastChar == "/" || lastChar == "*") {
+                           content.innerHTML = basic.substr(0, basic.length - 1);
+                           content.innerHTML += this.value;
+                       }
+                       else {
+                           content.innerHTML += this.value;
+                       }
+                   }
+                   else if (n == "-") {          //如果还没有输入任何字符，或者最后一个字符是“*”“/”，可以输入“-”作为负值
+                       var basic = content.innerHTML;
+                       var lastChar = basic.charAt(basic.length - 1);//获取字符串最后一个元素
+                       if (lastChar == "+" || lastChar == "-") {
+                           content.innerHTML = basic.substr(0, basic.length - 1);
+                           content.innerHTML += this.value;
+                       }
+                       else {
+                           content.innerHTML += this.value;
+                       }
+                   }
+                   else if (n == "←") {
+                       var basic = content.innerHTML;
+                       content.innerHTML = basic.substr(0, basic.length - 1);
+                   }
+                   else if (n == "=") {
+                       var basic = content.innerHTML;
+                       content.innerHTML = eval(basic);
+
+                   }
+                   else {
+                       content.innerHTML += n;
+                   }
                }
                else {
-                   content.innerHTML += n;
+                   alert("超过最大输入长度限制");
+                   if (n == "←") {
+                       var basic = content.innerHTML;
+                       content.innerHTML = basic.substr(0, basic.length - 1);
+                   }
                }
            }
+       
        }
+       
    }
+
     </script>
 </head>
 <body>
